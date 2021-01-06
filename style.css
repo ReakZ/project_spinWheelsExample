@@ -11,12 +11,12 @@ text{
 }
 #question{
 
-    width:400px;
-    height:500px;
+    width:300px;
+    height:200px;
 
 }
 #question h1{
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
@@ -47,7 +47,8 @@ text{
 
 body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
 }
 .generate{
     border-radius: 50%;
@@ -62,13 +63,13 @@ body{
         flex-direction: column;
     }
     .blocks{
-        width: 500px;
+        width: 400px;
         margin: 0 auto;
     }
     .title{
-width: 50px;
+width: 40px;
     }
     .description{
-        width: 150px;
+        width: 120px;
             }
 }
