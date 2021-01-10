@@ -16,6 +16,7 @@ text {
 #question {
   width: 300px;
   height: 200px;
+  color: slategrey;
 }
 #question h1 {
   font-size: 30px;
@@ -35,7 +36,7 @@ text {
   flex-direction: column;
 
   height: 200px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .block {
   display: flex;
@@ -43,11 +44,12 @@ text {
   align-items: center;
   justify-content: space-between;
 
-  background-color: #f2f2f2;
-  height: 60px;
-  padding: 5px;
+  background-color: darkseagreen;
+  height: 70px;
+  padding: 5px 15px;
   margin-top: 5px;
-  border: 1px solid #3498db;
+  border: none;
+  border-radius: 5px;
 }
 
 body {
@@ -61,7 +63,7 @@ body {
   height: 144px;
 
   background-color: #f7f7f7;
-  background-image: linear-gradient(top, #f7f7f7, #e7e7e7);
+  background-image: linear-gradient(top, bottom, #f7f7f7, #e7e7e7);
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -76,6 +78,7 @@ body {
   line-height: 144px;
   box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
   font-size: 33px;
+  border: none;
 }
 .generate:hover {
   color: #555;
@@ -83,11 +86,19 @@ body {
 }
 
 .title {
-    width: 200px;
-  }
-  .description {
-    width: 400px;
-  }
+  width: 250px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: darkcyan;
+}
+.description {
+  width: 500px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: darkcyan;
+}
 
 @media screen and (max-width: 1200px) {
   #chart {
@@ -107,9 +118,9 @@ body {
     width: 200px;
   }
   .title,
-.description {
-  font-size: 18px;
-}
+  .description {
+    font-size: 18px;
+  }
 }
 
 /*  */
@@ -126,8 +137,13 @@ header {
   background-color: #3498db;
 }
 .button {
-  height: 30px;
-  width: 30px;
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 25px;
+    color: green;
 }
 .title,
 .description {
@@ -140,13 +156,13 @@ header {
   }
 }
 
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.status{
-    color: red;
-    text-align: center;
+.status {
+  color: red;
+  text-align: center;
 }
