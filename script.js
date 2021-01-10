@@ -82,10 +82,14 @@ minus.forEach((element) => {
 });
 
 function addDeleteHandler(e) {
+
+if(document.querySelectorAll('.block').length>1){
+
   e.preventDefault();
   data = data.filter((x) => x.value != e.target.parentElement.dataset.id);
-
   e.target.parentElement.remove();
+}
+
 }
 
 let generate = document.querySelector(".generate");
