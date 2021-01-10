@@ -7,11 +7,10 @@ var padding = { top: 20, right: 40, bottom: 0, left: 0 },
   picked = 100000,
   oldpick = [],
   color = d3.scale.category20(); //category20c()
-//randomNumbers = getRandomNumbers();
-//http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
+
 let data = [
-  { label: "Yes", value: 1, question: "Yes?" },
-  { label: "No", value: 2, question: "No?" },
+  { label: "Yes", value: 1, question: "Yes, allways Yes" },
+  { label: "No", value: 2, question: "NoNoNo" },
 ];
 
 //
@@ -22,61 +21,59 @@ plus.forEach((element) => {
 });
 
 function invertHex(hex) {
-  if (hex.indexOf('#') === 0) {
+  if (hex.indexOf("#") === 0) {
     hex = hex.slice(1);
-}
-// convert 3-digit hex to 6-digits.
-if (hex.length === 3) {
+  }
+  // convert 3-digit hex to 6-digits.
+  if (hex.length === 3) {
     hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-}
-if (hex.length !== 6) {
-    throw new Error('Invalid HEX color.');
-}
-var r = parseInt(hex.slice(0, 2), 16),
+  }
+  if (hex.length !== 6) {
+    throw new Error("Invalid HEX color.");
+  }
+  var r = parseInt(hex.slice(0, 2), 16),
     g = parseInt(hex.slice(2, 4), 16),
     b = parseInt(hex.slice(4, 6), 16);
 
-// invert color components
-r = (255 - r).toString(16);
-g = (255 - g).toString(16);
-b = (255 - b).toString(16);
-// pad each with zeros and return
-return "#" + padZero(r) + padZero(g) + padZero(b);
+  // invert color components
+  r = (255 - r).toString(16);
+  g = (255 - g).toString(16);
+  b = (255 - b).toString(16);
+  // pad each with zeros and return
+  return "#" + padZero(r) + padZero(g) + padZero(b);
 }
 
 function padZero(str, len) {
   len = len || 2;
-  var zeros = new Array(len).join('0');
+  var zeros = new Array(len).join("0");
   return (zeros + str).slice(-len);
 }
+let currentLen = 2;
 function addTextHandler(e) {
   e.preventDefault();
-
   let block = document.createElement("div");
   block.classList.add("block");
-  block.dataset.id = data.length;
+  block.dataset.id = currentLen;
   blocks.appendChild(block);
+  currentLen += 1;
   let title = document.createElement("input");
-  title.setAttribute("placeholder", "text");
+  title.setAttribute("placeholder", "Title");
   title.classList.add("title");
   let description = document.createElement("input");
-  description.setAttribute("placeholder", "description");
+  description.setAttribute("placeholder", "Description");
   description.classList.add("description");
   let bp = document.createElement("button");
   bp.innerText = "+";
+  bp.classList.add("button", "plus");
   bp.addEventListener("click", addTextHandler);
   let bm = document.createElement("button");
   bm.addEventListener("click", addDeleteHandler);
   bm.innerText = "-";
+  bm.classList.add("button", "plus");
   block.appendChild(title);
   block.appendChild(description);
   block.appendChild(bp);
   block.appendChild(bm);
-
-  //             puzz.setAttribute("type", "button");
-  //   puzz.classList.add("key");
-  //   puzz.innerHTML = puzzles[element].value;
-  //   puzz.dataset.key = element;
 }
 
 let minus = document.querySelectorAll(".minus");
@@ -87,7 +84,7 @@ minus.forEach((element) => {
 function addDeleteHandler(e) {
   e.preventDefault();
   data = data.filter((x) => x.value != e.target.parentElement.dataset.id);
-  console.log(data);
+
   e.target.parentElement.remove();
 }
 
@@ -106,8 +103,8 @@ function generateHandler(e) {
       });
     }
   });
+  document.getElementById("status").innerText = "";
 
-  console.log(data);
   deploy();
 }
 
@@ -186,30 +183,33 @@ function deploy() {
     )
     .append("path")
     .attr("d", "M-" + r * 0.15 + ",0L0," + r * 0.05 + "L0,-" + r * 0.05 + "Z")
-    .style({ fill: "yellow" });
+    .style({ fill: "red" });
   //draw spin circle
   container
     .append("circle")
     .attr("cx", 0)
     .attr("cy", 0)
     .attr("r", 60)
-    .style({ fill: "white", cursor: "pointer" });
+    .style({ fill: "green", cursor: "pointer" });
   //spin text
   container
     .append("text")
     .attr("x", 0)
-    .attr("y", 15)
+    .attr("y", 10)
     .attr("text-anchor", "middle")
-    .text("SPIN")
-    .style({ "font-weight": "bold", "font-size": "30px" });
+    .text("START")
+    .style({ "font-weight": "bold", "font-size": "30px", fill: "white" });
 
   function spin(d) {
     container.on("click", null);
     //all slices have been seen, all done
-    console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
+    // console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
     if (oldpick.length == data.length) {
-      console.log("done");
-      container.on("click", null);
+      //console.log("done");
+      document.getElementById("status").innerText =
+        "All done , greate new list.";
+      //container.on("click", null);
+      oldpick.length = 0; // ^ new feat
       return;
     }
     var ps = 360 / data.length,
@@ -235,15 +235,15 @@ function deploy() {
         //mark question as seen
         d3.select(".slice:nth-child(" + (picked + 1) + ") path").attr(
           "fill",
-          `${invertHex(color(picked+1))}`
+          `${invertHex(color(picked + 1))}`
         );
-        console.log(`#${invertHex(color(picked+1))}`)
+
         //populate question
         d3.select("#question h1").text(data[picked].question);
         oldrotation = rotation;
 
         /* Get the result value from object "data" */
-        console.log(data[picked].value);
+        //  console.log(data[picked].value);
 
         /* Comment the below line for restrict spin to sngle time */
         container.on("click", spin);
@@ -265,7 +265,6 @@ function deploy() {
       typeof window.crypto.getRandomValues === "function"
     ) {
       window.crypto.getRandomValues(array);
-      console.log("works");
     } else {
       //no support for crypto, get crappy random numbers
       for (var i = 0; i < 1000; i++) {

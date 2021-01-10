@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wheel of fate</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <header class="container"><h1>Wheel of fate</h1></header>
+<h5 id="status"></h5>
     <div id="chart"></div>
     <div id="question"><h1></h1></div>
 
-    <div class="blocks">
+    <div class="blocks container">
 
         <div class="block" data-id="1">
 
-            <input type="text" placeholder="title" class="title">
-            <input type="text" placeholder="description" class="description">
-            <button class="plus" >+</button>
-            <button class="minus">-</button>
+            <input type="text" placeholder="title" class="title" value="Yes">
+            <input type="text" placeholder="description" class="description" value="Yes, allways Yes">
+            <button class="plus button" >+</button>
+            <button class="minus button">-</button>
         </div>
 
+        <div class="block" data-id="2">
 
+            <input type="text" placeholder="title" class="title" value="No" >
+            <input type="text" placeholder="description" class="description" value="NoNoNo">
+            <button class="plus button" >+</button>
+            <button class="minus button">-</button>
+        </div>
 
     </div>
     <button class="generate">Go</button>
